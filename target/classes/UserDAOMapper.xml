@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sdsdf.DAO.userDAO">
+
+    <select id="selectOne" resultType="com.sdsdf.entity.User">
+     select number,password,name,address,sex,phone
+    from users
+    where number=#{arg0}
+     </select>
+    
+    <select id="selecltFuzzy" resultType="com.sdsdf.entity.User">
+     select  * from users
+     where name
+     like concat('%',#{name},'%');
+    </select>
+
+    <insert id="insert" parameterType="com.sdsdf.entity.User">
+      insert into users value
+      (#{number},#{password},#{name},#{address},#{sex},#{phone} );
+    </insert>
+
+    <update id="update" parameterType="com.sdsdf.entity.User" >
+        update users set password=#{password},name=#{name},address=#{address},sex=#{sex},phone=#{phone}
+        where number=#{number};
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from users
+        where number=#{param1}
+
+    </delete>
+
+</mapper>

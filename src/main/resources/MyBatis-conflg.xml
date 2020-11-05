@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="mydb1">
+        <environment id="mydb1">
+            <transactionManager type="JDBC"></transactionManager>
+
+            <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mydb1?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1234"/>
+
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+
+        <mapper resource="UserDAOMapper.xml"/>
+        <mapper resource="EmployessDAOMapper.xml"/>
+        <mapper resource="AddressDAOMapper.xml"/>
+        <mapper resource="AddressDAO2Mapper.xml"/>
+    </mappers>
+</configuration>

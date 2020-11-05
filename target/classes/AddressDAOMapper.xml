@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdsdf.DAO.AddressDAO">
+    <resultMap id="Addess_Employees" type="com.sdsdf.entity.Address">
+        <id column="address_id" property="address_id"></id>
+        <result column="street" property="street"></result>
+        <result column="house_number" property="house_number"></result>
+        <association property="employees" javaType="com.sdsdf.entity.Employees">
+            <id property="id" column="id"></id>
+            <result property="name" column="name"></result>
+            <result property="phone" column="phone"></result>
+            <result property="sex" column="sex"></result>
+        </association>
+    </resultMap>
+
+    <select id="selecteEmployees" resultMap="Addess_Employees">
+select address.address_id,street,house_number,id,name,phone,sex
+from address
+inner join employees
+where employees.address_id=address.address_id  and address.address_id=#{id};
+    </select>
+</mapper>
